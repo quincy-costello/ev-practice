@@ -7,7 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
+import com.seattlesolvers.solverslib.command.CommandScheduler;
+import com.seattlesolvers.solverslib.command.InstantCommand;
+import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 
 
 @TeleOp(name="Basic: Omni Linear OpMode", group="Linear OpMode")
@@ -48,6 +50,10 @@ public class HelloWorld extends LinearOpMode {
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
         backRightDrive.setDirection(DcMotor.Direction.REVERSE);
 
+        CommandScheduler.getInstance().schedule(new InstantCommand(() -> {
+            System.out.println("its a command!!");
+        }));
+
         // Resetting encoders
         frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -85,7 +91,11 @@ public class HelloWorld extends LinearOpMode {
 
         double x = 0.0;
         double y = 0.0;
+        GamepadEx gamepadEx1 = new GamepadEx(gamepad1);
+        gamepadEx1.getButton()
         while (opModeIsActive()) {
+
+            CommandScheduler.getInstance().run();
 
             // ENCODER INTRO
 
