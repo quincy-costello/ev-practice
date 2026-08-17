@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -9,10 +10,9 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.seattlesolvers.solverslib.command.CommandScheduler;
 import com.seattlesolvers.solverslib.command.InstantCommand;
-import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 
 
-@TeleOp(name="Basic: Omni Linear OpMode", group="Linear OpMode")
+@Autonomous(name = "Command-Based: Drive 18 Inches")
 public class HelloWorld extends LinearOpMode {
     // change
 
@@ -91,8 +91,6 @@ public class HelloWorld extends LinearOpMode {
 
         double x = 0.0;
         double y = 0.0;
-        GamepadEx gamepadEx1 = new GamepadEx(gamepad1);
-        gamepadEx1.getButton()
         while (opModeIsActive()) {
 
             CommandScheduler.getInstance().run();
